@@ -2,6 +2,7 @@ package com.examly.springapp;
 
 import javax.swing.text.html.parser.Entity;
 import javax.persistence.*;
+import java.util.List;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -23,6 +24,36 @@ public class SpringappApplication {
 		etm.getTransaction.commit();
 	}
 
+	@GetMapping("/changeStatus")
+	public void changeStatus(@RequestParam("id") String taskId) {
+		EntityManager etm = etmf.createEntityManager();
+		etm.getTransaction().begin();
+		Task task = etm.find(Task.class, taskId);
+		task.setTaskStatus("Completed");
+		etm.getTransaction().commit();
+	}
+
+	@GetMapping("/deleteTask")
+	public void deleteTask(@RequestParam("id") String taskId) {
+		EntityManager etm = etmf.createEntityManager();
+		etm.getTransaction().begin();
+		Task task = etm.find(Task.class, taskId);
+		etm.retmove(task);
+		etm.getTransaction().commit();
+	}
+
+	@GetMapping("/allTasks")
+	public List<Task> getAllTasks() {
+		EntityManager etm = etmf.createEntityManager();
+		Query query = etm.createQuery("SELECT t FROM Task t");
+		return query.getResultList();
+	}
+
+	@GetMapping("/getTask")
+	public Task getTask(@RequestParam("id") String taskId) {
+		EntityManager etm = etmf.createEntityManager();
+		return etm.find(Task.class, taskId);
+	}
 }
 
 @Entity
