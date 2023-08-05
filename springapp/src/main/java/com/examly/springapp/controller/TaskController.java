@@ -6,52 +6,36 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.examly.springapp.entity.Task;
-import com.examly.springapp.repository.TaskRepository;
-import com.examly.springapp.exception.ResourceNotFoundException;
-import org.springframework.http.ResponseEntity;
+import com.examly.springapp.service.TaskService;
 
 @RestController
-@RequestMapping("")
-
 public class TaskController {
     @Autowired
-	private TaskRepository taskrepo;
-
-    @PostMapping("/saveTask")
-    public Task saveTask(@RequestBody Task task)
-    {
-        return taskrepo.save(task);
-    }
-
-    @GetMapping("/changeStatus")
-    public ResponseEntity<Task> changeStatus(@RequestParam Long id)
-    {
-        Task task = taskrepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Task not found :"+id));
-        task.setTaskStatus("completed");
-
-        Task updatedtask = taskrepo.save(task);
-        return ResponseEntity.ok(updatedtask);
-
-    }
-
-    @GetMapping("/deleteTask")
-    public String deleteTaskById(@RequestParam Long id)
-    {
-        Task task = taskrepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Task not found :"+id));
-        taskrepo.delete(task);
-        return "deleted sucessfully";
-    }
-
-	@GetMapping("/alltasks")
-    public List<Task> getallTasks()
-    {
-        return taskrepo.findAll();
-    }
-
-    @GetMapping("/getTask")
-    public ResponseEntity<Task> getTaskById(@RequestParam Long id)
-    {
-        Task task = taskrepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Task not found :"+id));
-        return ResponseEntity.ok(task);
-    }	
+	private TaskService taskService;
+	
+	@PostMapping("/saveTask")
+	public Task saveTask(@RequestBody Task task) {
+		return taskService.saveTask(task);
+	}
+	
+	@GetMapping("/getTasks")
+	public List<Task> getAllTasks() {
+		return taskService.getAllTasks();
+	}
+	
+	@GetMapping("/getTaskById/{id}")
+	public Task getTaskById(@RequestParam String id) {
+		return taskService.getTaskById(id);
+	}
+	
+	@GetMapping("/getTaskByName/{name}")
+	public Task getTaskByTaskHolderName(@RequestParam String taskHolderName) {
+		return taskService.getTaskByTaskHolderName(taskHolderName);
+	}
+	
+	
+	@DeleteMapping("/deleteTask/{id}")
+	public void deleteTask(@RequestParam String id) {
+		taskService.deleteTask(id);
+	}	
 }
