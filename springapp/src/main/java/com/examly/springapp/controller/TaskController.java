@@ -15,42 +15,42 @@ import com.examly.springapp.exception.ResourceNotFoundException;
 public class TaskController {
     @Autowired
 	private TaskRepository taskrepo;
-	
+
+    @PostMapping("/saveTask")
+    public Task saveTask(@RequestBody Task task)
+    {
+        return taskrepo.save(task);
+    }
+
+    @GetMapping("/changeStatus")
+    public ResponseEntity<Task> changeTask(@RequestParam Long id)
+    {
+        Task task = taskrepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Task not found :"+id));
+        task.setTaskStatus(Taskdetails.getTaskStatus());
+
+        Task updatedtask = taskrepo.save(task);
+        return ResponseEntity.ok(updatedtask);
+
+    }
+
+    @GetMapping("/deleteTask")
+    public String deleteTaskById(@RequestParam Long id)
+    {
+        Task task = taskrepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Task not found :"+id));
+        taskrepo.delete(task);
+        return "deleted sucessfully";
+    }
+
 	@GetMapping("/alltasks")
     public List<Task> getallTasks()
     {
-        return taskRepository.findAll();
-    }
-    
-    @PostMapping("/saveTask")
-    public Task createTask(@RequestBody Task task)
-    {
-        return taskRepository.save(task);
+        return taskrepo.findAll();
     }
 
     @GetMapping("/getTask")
     public ResponseEntity<Task> getTaskById(@RequestParam Long id)
     {
-        Task task = taskRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Task not found :"+id));
+        Task task = taskrepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Task not found :"+id));
         return ResponseEntity.ok(task);
-    }
-
-	@GetMapping("/alltasks")
-	public List<Task> getAllTasks() {
-		return taskService.getAllTasks();
-	}
-	
-	@GetMapping("/getTaskById/{id}")
-	public Task getTaskById(@RequestParam String id) {
-		return taskService.getTaskById(id);
-	}
-	
-	@GetMapping("/getTaskByName/{name}")
-	public Task getTaskByTaskHolderName(@RequestParam String taskHolderName) {
-		return taskService.getTaskByTaskHolderName(taskHolderName);
-	}
-	
-	
-	
-	
+    }	
 }
