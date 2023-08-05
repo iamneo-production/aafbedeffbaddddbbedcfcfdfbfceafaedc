@@ -2,14 +2,10 @@ package com.examly.springapp.entity;
 
 import java.lang.annotation.Inherited;
 
-import javax.annotation.processing.Generated;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="Tasks")
+@Table(name="task")
 public class Task {
 
 	public Long getId() {
