@@ -20,9 +20,6 @@ public class Task {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	@Column(name = "taskId")
 	private long taskId;
 	@Column(name = "taskHolderName")
 	private String taskHolderName;
@@ -37,41 +34,48 @@ public class Task {
 	public Task() {
 	}
 	
-	public Task(String taskId, String taskHolderName, String taskDate, String taskName, String taskStatus) {
-		super();
+	public Task(long taskId, String taskHolderName, String taskDate, String taskName, String taskStatus) {
+		
 		this.taskId = taskId;
 		this.taskHolderName = taskHolderName;
 		this.taskDate = taskDate;
 		this.taskName = taskName;
 		this.taskStatus = taskStatus;
 	}
-	public String getTaskId() {
-		return taskId;
+	public long getTaskId() {
+		return this.taskId;
 	}
-	public void setTaskId(String taskId) {
+	public void setTaskId(long taskId) {
 		this.taskId = taskId;
 	}
 	public String getTaskHolderName() {
-		return taskHolderName;
+		return this.taskHolderName;
 	}
+
 	public void setTaskHolderName(String taskHolderName) {
 		this.taskHolderName = taskHolderName;
 	}
+
 	public String getTaskDate() {
-		return taskDate;
+		return this.taskDate;
 	}
+
 	public void setTaskDate(String taskDate) {
 		this.taskDate = taskDate;
 	}
+
 	public String getTaskName() {
-		return taskName;
+		return this.taskName;
 	}
+
 	public void setTaskName(String taskName) {
 		this.taskName = taskName;
 	}
+
 	public String getTaskStatus() {
-		return taskStatus;
+		return this.taskStatus;
 	}
+
 	public void setTaskStatus(String taskStatus) {
 		this.taskStatus = taskStatus;
 	}
