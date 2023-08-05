@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.examly.springapp.entity.Task;
 import com.examly.springapp.service.TaskService;
 
-@RestController
+
 public class TaskController {
     @Autowired
 	private TaskService taskService;

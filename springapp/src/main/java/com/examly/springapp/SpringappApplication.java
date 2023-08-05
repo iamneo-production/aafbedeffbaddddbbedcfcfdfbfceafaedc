@@ -2,6 +2,7 @@ package com.examly.springapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -38,7 +39,7 @@ public class SpringappApplication {
 	  EntityManager etm = etmf.createEntityManager();
 	  etm.getTransaction().begin();
 	  Task task = etm.find(Task.class, taskId);
-	  etm.retmove(task);
+	  etm.remove(task);
 	  etm.getTransaction().commit();
 	}
   
@@ -59,14 +60,14 @@ public class SpringappApplication {
 @Entity
 class Task {
 
-@Id
-private String taskId;
-private String taskHolderName;
-private String taskDate;
-private String taskName;
-private String taskStatus;
+	@Id
+	private String taskId;
+	private String taskHolderName;
+	private String taskDate;
+	private String taskName;
+	private String taskStatus;
 
-public String getTaskId() {
+	public String getTaskId() {
 		return taskId;
 	}
 
