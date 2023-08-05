@@ -17,25 +17,32 @@ public class TaskController {
 	public Task saveTask(@RequestBody Task task) {
 		return taskService.saveTask(task);
 	}
+
+    @GetMapping("/changeStatus")
+	public Task changeStatus(@RequestParam String id) {
+		return taskService.changeStatus(id);
+	}
 	
-	@GetMapping("/getTasks")
+    @DeleteMapping("/deleteTask/{id}")
+	public void deleteTask(@RequestParam String id) {
+		taskService.deleteTask(id);
+	}
+	
+	@GetMapping("/alltasks")
 	public List<Task> getAllTasks() {
 		return taskService.getAllTasks();
 	}
 	
-	@GetMapping("/getTaskById/{id}")
+	@GetMapping("/getTask/{id}")
 	public Task getTaskById(@RequestParam String id) {
 		return taskService.getTaskById(id);
 	}
 	
-	@GetMapping("/getTaskByName/{name}")
-	public Task getTaskByTaskHolderName(@RequestParam String taskHolderName) {
-		return taskService.getTaskByTaskHolderName(taskHolderName);
-	}
+	// @GetMapping("/getTaskByName/{name}")
+	// public Task getTaskByTaskHolderName(@RequestParam String taskHolderName) {
+	// 	return taskService.getTaskByTaskHolderName(taskHolderName);
+	// }
 	
 	
-	@DeleteMapping("/deleteTask/{id}")
-	public void deleteTask(@RequestParam String id) {
-		taskService.deleteTask(id);
-	}	
+		
 }
