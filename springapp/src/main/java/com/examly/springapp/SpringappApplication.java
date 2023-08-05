@@ -11,3 +11,28 @@ public class SpringappApplication {
 	}
 
 }
+
+@Entity
+public class Task {
+
+	@Id
+	private String taskId;
+	private String taskHolderName;
+	private String taskDate;
+	private String taskName;
+	private String taskStatus;
+
+	public String getTaskId() {
+		return taskId;
+	}
+	public void setTaskId(String taskId) {
+		this.taskId = taskId;
+	}
+	public String getTaskHolderName() {
+		return taskHolderName;
+	}
+	public void setTaskHolderName(String taskHolderName) {
+		this.taskHolderName = taskHolderName;
+	}
+	public String getTaskDate() 
+}
