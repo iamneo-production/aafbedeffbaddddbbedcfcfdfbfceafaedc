@@ -3,7 +3,7 @@ package com.examly.springapp.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="myTasks")
+@Table(name="mytasks")
 public class Task {
 
 	public Long getId() {

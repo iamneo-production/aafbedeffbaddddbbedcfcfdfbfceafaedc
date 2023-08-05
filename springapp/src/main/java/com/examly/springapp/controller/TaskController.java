@@ -47,11 +47,6 @@ public class TaskController {
 		return taskService.getTaskById(id);
 	}
 	
-	// @GetMapping("/getTaskByName/{name}")
-	// public Task getTaskByTaskHolderName(@RequestParam String taskHolderName) {
-	// 	return taskService.getTaskByTaskHolderName(taskHolderName);
-	// }
-	
 	
 		
 }
