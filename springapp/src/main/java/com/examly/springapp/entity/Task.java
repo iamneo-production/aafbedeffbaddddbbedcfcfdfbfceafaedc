@@ -3,7 +3,10 @@ package com.examly.springapp.entity;
 import java.lang.annotation.Inherited;
 
 import javax.annotation.processing.Generated;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="Tasks")
@@ -20,7 +23,7 @@ public class Task {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column(name = "taskId")
-	private String taskId;
+	private long taskId;
 	@Column(name = "taskHolderName")
 	private String taskHolderName;
 	@Column(name = "taskDate")
