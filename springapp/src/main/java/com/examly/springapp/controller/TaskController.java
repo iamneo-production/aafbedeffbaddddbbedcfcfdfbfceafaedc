@@ -23,10 +23,10 @@ public class TaskController {
     }
 
     @GetMapping("/changeStatus")
-    public ResponseEntity<Task> changeTask(@RequestParam Long id)
+    public ResponseEntity<Task> changeStatus(@RequestParam Long id)
     {
         Task task = taskrepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Task not found :"+id));
-        task.setTaskStatus(Taskdetails.getTaskStatus());
+        task.setTaskStatus("completed");
 
         Task updatedtask = taskrepo.save(task);
         return ResponseEntity.ok(updatedtask);
