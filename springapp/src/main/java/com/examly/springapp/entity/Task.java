@@ -11,13 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Tasks")
 public class Task {
-    public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+    
 
 	@Id
 	private long taskId;
