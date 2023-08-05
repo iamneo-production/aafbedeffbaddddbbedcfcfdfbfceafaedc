@@ -1,13 +1,26 @@
 package com.examly.springapp;
 
+import javax.swing.text.html.parser.Entity;
+import javax.persistence.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SpringappApplication {
 
+	@PersistenceUnit
+	private EntityManagerFactory etmf;
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringappApplication.class, args);
+	}
+
+	@PostMapping("/saveTask")
+	public void saveTask(@RequestBody Task task) {
+		EntityManager etm = etmf.createEntityManager();
+		etm.getTransaction.begin();
+		etm.persist(task);
+		etm.getTransaction.commit();
 	}
 
 }
