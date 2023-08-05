@@ -5,7 +5,7 @@ import java.lang.annotation.Inherited;
 import javax.persistence.*;
 
 @Entity
-@Table(name="task")
+@Table(name="Tasks")
 public class Task {
 
 	public Long getId() {
