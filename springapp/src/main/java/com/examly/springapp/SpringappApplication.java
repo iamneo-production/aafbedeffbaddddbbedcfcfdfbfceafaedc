@@ -30,7 +30,7 @@ public class SpringappApplication {
 		EntityManager etm = etmf.createEntityManager();
 		etm.getTransaction().begin();
 		Task task = etm.find(Task.class, taskId);
-		task.setTaskStatus("Completed");
+		task.setTaskStatus("completed");
 		etm.getTransaction().commit();
 	}
 
