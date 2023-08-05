@@ -23,12 +23,12 @@ public class TaskController {
 		return taskService.changeStatus(id);
 	}
 	
-    @DeleteMapping("/deleteTask/{id}")
+    @GetMapping("/deleteTask/{id}")
 	public void deleteTask(@RequestParam String id) {
 		taskService.deleteTask(id);
 	}
-    
-	@GetMapping("/getTasks")
+
+	@GetMapping("/alltasks")
 	public List<Task> getAllTasks() {
 		return taskService.getAllTasks();
 	}
