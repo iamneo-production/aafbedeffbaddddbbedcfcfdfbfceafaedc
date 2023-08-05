@@ -1,11 +1,9 @@
 package com.examly.springapp.entity;
 
-import java.lang.annotation.Inherited;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name="Tasks")
+@Table(name="myTasks")
 public class Task {
 
 	public Long getId() {
