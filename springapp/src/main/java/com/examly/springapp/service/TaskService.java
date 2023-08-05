@@ -9,9 +9,13 @@ import com.examly.springapp.repository.TaskRepository;
 
 @Service
 public class TaskService {
-    @Autowired
-	public TaskRepository taskRepo;
+    
+	private final TaskRepository taskRepo;
 
+	@Autowired
+	public TaskService(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
 //	public List<Task> getAllTasks()
 //	{
 //		List<Task> tasks = new ArrayList<>();
