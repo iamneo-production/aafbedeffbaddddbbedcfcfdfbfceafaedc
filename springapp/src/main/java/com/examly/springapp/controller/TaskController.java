@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.examly.springapp.entity.Task;
-import com.examly.springapp.service.TaskService;
+import com.examly.springapp.repository.TaskRepository;
+import com.examly.springapp.exception.ResourceNotFoundException;
 
+@RestController
+@RequestMapping("")
 
 public class TaskController {
     @Autowired
-	private TaskService taskService;
+	private TaskRepository taskrepo;
 	
 	@PostMapping("/saveTask")
 	public Task saveTask(@RequestBody Task task) {
